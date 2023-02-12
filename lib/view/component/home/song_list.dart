@@ -4,8 +4,8 @@ import 'package:project_score/model/provider.dart';
 import 'package:project_score/db/db.dart';
 import 'package:project_score/model/ad.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:project_score/view/component/pj_song_datatable.dart';
-import 'package:project_score/view/component/sort_buttons.dart';
+import 'package:project_score/view/component/home/pj_song_datatable.dart';
+import 'package:project_score/view/component/home/sort_buttons.dart';
 
 class ShowList extends ConsumerStatefulWidget {
   const ShowList({super.key});
