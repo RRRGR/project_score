@@ -4,8 +4,8 @@ import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart
 import 'package:image_picker/image_picker.dart';
 import 'package:project_score/db/db.dart';
 import 'package:project_score/model/process_image.dart';
-import 'package:project_score/view/component/alerts.dart';
-import 'package:project_score/view/component/song_list.dart';
+import 'package:project_score/view/component/home/alerts.dart';
+import 'package:project_score/view/component/home/song_list.dart';
 
 class Home extends ConsumerStatefulWidget {
   const Home({super.key});

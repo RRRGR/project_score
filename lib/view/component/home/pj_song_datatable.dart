@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:project_score/db/pj_songs.dart';
 import 'package:project_score/model/provider.dart';
-import 'package:project_score/view/component/alerts.dart';
+import 'package:project_score/view/component/home/alerts.dart';
 
 class SongDataTable extends ConsumerWidget {
   final List songData;
