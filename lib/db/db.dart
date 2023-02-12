@@ -10,54 +10,6 @@ class IsarService {
     db = openDB();
   }
 
-  Stream pjChanged() async* {
-    final isar = await db;
-    yield* isar.pj_songs.watchLazy();
-  }
-
-  Stream<List<pj_song>> pjListen(String sortSetting) async* {
-    final isar = await db;
-    if (sortSetting == "デフォルト") {
-      yield* isar.pj_songs.where().watch();
-    } else if (sortSetting == "曲名") {
-      yield* isar.pj_songs.where().sortByName().watch();
-    } else if (sortSetting == "レベル") {
-      List<pj_song> sortByLevelList = [];
-      for (int i = 40; i > 1; i--) {
-        List<pj_song> newList = isar.pj_songs
-            .filter()
-            .master((q) => q.diffEqualTo(i))
-            .findAllSync();
-        sortByLevelList = [...sortByLevelList, ...newList];
-      }
-      // yield* isar.pj_songs.where().watch();
-      yield sortByLevelList;
-    }
-  }
-
-  Stream<List<pj_song>> pjDefaultListen() async* {
-    final isar = await db;
-    yield* isar.pj_songs.where().watch();
-  }
-
-  Stream<List<pj_song>> pjNameListen() async* {
-    final isar = await db;
-    yield* isar.pj_songs.where().sortByName().watch();
-  }
-
-  Stream<List<pj_song>> pjLevelListen() async* {
-    final isar = await db;
-    List<pj_song> sortByLevelList = [];
-    for (int i = 40; i > 1; i--) {
-      List<pj_song> newList =
-          isar.pj_songs.filter().master((q) => q.diffEqualTo(i)).findAllSync();
-      sortByLevelList = [...sortByLevelList, ...newList];
-    }
-    // yield* isar.pj_songs.where().watch();
-    yield sortByLevelList;
-    yield* pjLevelListen();
-  }
-
   Future<void> updatePjSong() async {
     final isar = await db;
     List songsList = await loadLocalJson();
