@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:project_score/db/db.dart';
 import 'package:project_score/model/process_image.dart';
 import 'package:project_score/view/component/home/alerts.dart';
+import 'package:project_score/view/component/home/ps_drawer.dart';
 import 'package:project_score/view/component/home/song_list.dart';
 
 class Home extends ConsumerStatefulWidget {
@@ -29,6 +30,7 @@ class HomeState extends ConsumerState<Home> {
         ],
       ),
       body: const ShowList(),
+      drawer: const PSDrawer(),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: Container(
         margin: const EdgeInsets.only(bottom: 50.0),
