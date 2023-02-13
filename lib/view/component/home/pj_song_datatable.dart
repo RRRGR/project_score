@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:project_score/db/pj_songs.dart';
+import 'package:project_score/model/constant.dart';
 import 'package:project_score/model/provider.dart';
 import 'package:project_score/view/component/home/alerts.dart';
 
@@ -22,6 +23,7 @@ class SongDataTable extends ConsumerWidget {
       ],
       rows: songData
           .map((e) => DataRow(
+                color: getRowBackgroundColor(e, ref),
                 onLongPress: () => showDialog(
                     context: context, builder: (_) => EditScoreAlert(e)),
                 cells: [
@@ -105,5 +107,97 @@ class ScoreText extends ConsumerWidget {
             '${e.easy.bestPerfect.toString()}-${e.easy.bestGreat.toString()}-${e.easy.bestGood.toString()}-${e.easy.bestBad.toString()}-${e.easy.bestMiss.toString()}');
       }
     }
+  }
+}
+
+MaterialStateProperty<MaterialColor> getRowBackgroundColor(
+    pj_song e, WidgetRef ref) {
+  final diff = ref.watch(levelProvider);
+  bool APed = false;
+  bool FCed = false;
+  if (diff == "Master") {
+    if (e.master.FCed != null && e.master.FCed == true) {
+      FCed = true;
+    }
+    if (e.master.APed != null && e.master.APed == true) {
+      APed = true;
+    }
+    return MaterialStateProperty.resolveWith((states) {
+      if (APed) {
+        return Colors.red;
+      } else if (FCed) {
+        return Colors.green;
+      } else {
+        return materialWhite;
+      }
+    });
+  } else if (diff == "Expert") {
+    if (e.expert.FCed != null && e.expert.FCed == true) {
+      FCed = true;
+    }
+    if (e.expert.APed != null && e.expert.APed == true) {
+      APed = true;
+    }
+    return MaterialStateProperty.resolveWith((states) {
+      if (APed) {
+        return Colors.red;
+      } else if (FCed) {
+        return Colors.green;
+      } else {
+        return materialWhite;
+      }
+    });
+  } else if (diff == "Hard") {
+    if (e.hard.FCed != null && e.hard.FCed == true) {
+      FCed = true;
+    }
+    if (e.hard.APed != null && e.hard.APed == true) {
+      APed = true;
+    }
+    return MaterialStateProperty.resolveWith((states) {
+      if (APed) {
+        return Colors.red;
+      } else if (FCed) {
+        return Colors.green;
+      } else {
+        return materialWhite;
+      }
+    });
+  } else if (diff == "Normal") {
+    if (e.normal.FCed != null && e.normal.FCed == true) {
+      FCed = true;
+    }
+    if (e.normal.APed != null && e.normal.APed == true) {
+      APed = true;
+    }
+    return MaterialStateProperty.resolveWith((states) {
+      if (APed) {
+        return Colors.red;
+      } else if (FCed) {
+        return Colors.green;
+      } else {
+        return materialWhite;
+      }
+    });
+  } else if (diff == "Easy") {
+    if (e.easy.FCed != null && e.easy.FCed == true) {
+      FCed = true;
+    }
+    if (e.easy.APed != null && e.easy.APed == true) {
+      APed = true;
+    }
+    return MaterialStateProperty.resolveWith((states) {
+      if (APed) {
+        return Colors.red;
+      } else if (FCed) {
+        return Colors.green;
+      } else {
+        return materialWhite;
+      }
+    });
+  } else {
+    return MaterialStateProperty.resolveWith((states) {
+      return Colors.yellow;
+    });
   }
 }
