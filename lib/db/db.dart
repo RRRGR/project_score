@@ -69,6 +69,8 @@ class IsarService {
 
   Future<void> updateScore(Map scoreData) async {
     final isar = await db;
+    bool APed = false;
+    bool FCed = false;
     pj_song songInfo;
     List result =
         await isar.pj_songs.filter().nameContains(scoreData["name"]).findAll();
@@ -85,9 +87,19 @@ class IsarService {
           .findAll();
     }
     final old_pj_songs = result[0];
+    if (scoreData["great"] == 0 &&
+        scoreData["good"] == 0 &&
+        scoreData["bad"] == 0 &&
+        scoreData["miss"] == 0)
+      APed = true;
+    else if (scoreData["good"] == 0 &&
+        scoreData["bad"] == 0 &&
+        scoreData["miss"] == 0) FCed = true;
     if (scoreData['diff'] == 'MASTER') {
       final masterInfo = pj_diff_and_score()
         ..diff = old_pj_songs.master.diff
+        ..APed = APed
+        ..FCed = FCed
         ..bestPerfect = scoreData["perfect"]
         ..bestGreat = scoreData["great"]
         ..bestGood = scoreData["good"]
@@ -104,6 +116,8 @@ class IsarService {
     } else if (scoreData['diff'] == 'EXPERT') {
       final expertInfo = pj_diff_and_score()
         ..diff = old_pj_songs.expert.diff
+        ..APed = APed
+        ..FCed = FCed
         ..bestPerfect = scoreData["perfect"]
         ..bestGreat = scoreData["great"]
         ..bestGood = scoreData["good"]
@@ -120,6 +134,8 @@ class IsarService {
     } else if (scoreData['diff'] == 'HARD') {
       final hardInfo = pj_diff_and_score()
         ..diff = old_pj_songs.hard.diff
+        ..APed = APed
+        ..FCed = FCed
         ..bestPerfect = scoreData["perfect"]
         ..bestGreat = scoreData["great"]
         ..bestGood = scoreData["good"]
@@ -136,6 +152,8 @@ class IsarService {
     } else if (scoreData['diff'] == 'NORMAL') {
       final normalInfo = pj_diff_and_score()
         ..diff = old_pj_songs.normal.diff
+        ..APed = APed
+        ..FCed = FCed
         ..bestPerfect = scoreData["perfect"]
         ..bestGreat = scoreData["great"]
         ..bestGood = scoreData["good"]
@@ -152,6 +170,8 @@ class IsarService {
     } else {
       final easyInfo = pj_diff_and_score()
         ..diff = old_pj_songs.easy.diff
+        ..APed = APed
+        ..FCed = FCed
         ..bestPerfect = scoreData["perfect"]
         ..bestGreat = scoreData["great"]
         ..bestGood = scoreData["good"]
@@ -171,6 +191,8 @@ class IsarService {
 
   Future<void> updateFromForm(Map scoreMap) async {
     final isar = await db;
+    bool APed = false;
+    bool FCed = false;
     pj_song songInfo;
     List result = await isar.pj_songs
         .filter()
@@ -190,9 +212,19 @@ class IsarService {
     //       .findAll();
     // }
     final old_pj_songs = result[0];
+    if (scoreMap["great"] == 0 &&
+        scoreMap["good"] == 0 &&
+        scoreMap["bad"] == 0 &&
+        scoreMap["miss"] == 0)
+      APed = true;
+    else if (scoreMap["good"] == 0 &&
+        scoreMap["bad"] == 0 &&
+        scoreMap["miss"] == 0) FCed = true;
     if (scoreMap['diff'] == 'Master') {
       final masterInfo = pj_diff_and_score()
         ..diff = old_pj_songs.master.diff
+        ..APed = APed
+        ..FCed = FCed
         ..bestPerfect = scoreMap["perfect"]
         ..bestGreat = scoreMap["great"]
         ..bestGood = scoreMap["good"]
@@ -209,6 +241,8 @@ class IsarService {
     } else if (scoreMap['diff'] == 'Expert') {
       final expertInfo = pj_diff_and_score()
         ..diff = old_pj_songs.expert.diff
+        ..APed = APed
+        ..FCed = FCed
         ..bestPerfect = scoreMap["perfect"]
         ..bestGreat = scoreMap["great"]
         ..bestGood = scoreMap["good"]
@@ -225,6 +259,8 @@ class IsarService {
     } else if (scoreMap['diff'] == 'Hard') {
       final hardInfo = pj_diff_and_score()
         ..diff = old_pj_songs.hard.diff
+        ..APed = APed
+        ..FCed = FCed
         ..bestPerfect = scoreMap["perfect"]
         ..bestGreat = scoreMap["great"]
         ..bestGood = scoreMap["good"]
@@ -241,6 +277,8 @@ class IsarService {
     } else if (scoreMap['diff'] == 'Normal') {
       final normalInfo = pj_diff_and_score()
         ..diff = old_pj_songs.normal.diff
+        ..APed = APed
+        ..FCed = FCed
         ..bestPerfect = scoreMap["perfect"]
         ..bestGreat = scoreMap["great"]
         ..bestGood = scoreMap["good"]
@@ -257,6 +295,8 @@ class IsarService {
     } else {
       final easyInfo = pj_diff_and_score()
         ..diff = old_pj_songs.easy.diff
+        ..APed = APed
+        ..FCed = FCed
         ..bestPerfect = scoreMap["perfect"]
         ..bestGreat = scoreMap["great"]
         ..bestGood = scoreMap["good"]
