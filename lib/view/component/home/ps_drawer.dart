@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:project_score/view/screen/graph.dart';
+import 'package:project_score/view/screen/graph_page.dart';
 
 class PSDrawer extends StatelessWidget {
   const PSDrawer({super.key});
@@ -13,8 +13,8 @@ class PSDrawer extends StatelessWidget {
           title: const Text('グラフ'),
           onTap: () {
             Navigator.of(context).pop();
-            // Navigator.of(context).push(
-            //     MaterialPageRoute(builder: (context) => const GraphPage()));
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const GraphPage()));
           },
         ),
       ]),
