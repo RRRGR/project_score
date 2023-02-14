@@ -12,7 +12,7 @@ class EditScoreAlert extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
-    final diff = ref.watch(levelProvider);
+    final diff = ref.watch(diffProvider);
     Map scoreMap = {
       'songName': '',
       'diff': '',
@@ -185,17 +185,17 @@ class NameAndDiffText extends ConsumerWidget {
   const NameAndDiffText(this.e, {super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final diff = ref.watch(levelProvider);
+    final diff = ref.watch(diffProvider);
     if (diff == "Master") {
-      return Text("${e.name} ${e.master.diff}");
+      return Text("${e.name} ${e.master.level}");
     } else if (diff == "Expert") {
-      return Text("${e.name} ${e.expert.diff}");
+      return Text("${e.name} ${e.expert.level}");
     } else if (diff == "Hard") {
-      return Text("${e.name} ${e.hard.diff}");
+      return Text("${e.name} ${e.hard.level}");
     } else if (diff == "Normal") {
-      return Text("${e.name} ${e.normal.diff}");
+      return Text("${e.name} ${e.normal.level}");
     } else {
-      return Text("${e.name} ${e.easy.diff}");
+      return Text("${e.name} ${e.easy.level}");
     }
   }
 }

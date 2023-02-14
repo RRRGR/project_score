@@ -21,25 +21,25 @@ const Pj_songSchema = CollectionSchema(
       id: 0,
       name: r'easy',
       type: IsarType.object,
-      target: r'pj_diff_and_score',
+      target: r'pj_level_and_score',
     ),
     r'expert': PropertySchema(
       id: 1,
       name: r'expert',
       type: IsarType.object,
-      target: r'pj_diff_and_score',
+      target: r'pj_level_and_score',
     ),
     r'hard': PropertySchema(
       id: 2,
       name: r'hard',
       type: IsarType.object,
-      target: r'pj_diff_and_score',
+      target: r'pj_level_and_score',
     ),
     r'master': PropertySchema(
       id: 3,
       name: r'master',
       type: IsarType.object,
-      target: r'pj_diff_and_score',
+      target: r'pj_level_and_score',
     ),
     r'name': PropertySchema(
       id: 4,
@@ -50,7 +50,7 @@ const Pj_songSchema = CollectionSchema(
       id: 5,
       name: r'normal',
       type: IsarType.object,
-      target: r'pj_diff_and_score',
+      target: r'pj_level_and_score',
     )
   },
   estimateSize: _pj_songEstimateSize,
@@ -60,7 +60,7 @@ const Pj_songSchema = CollectionSchema(
   idName: r'id',
   indexes: {},
   links: {},
-  embeddedSchemas: {r'pj_diff_and_score': Pj_diff_and_scoreSchema},
+  embeddedSchemas: {r'pj_level_and_score': Pj_level_and_scoreSchema},
   getId: _pj_songGetId,
   getLinks: _pj_songGetLinks,
   attach: _pj_songAttach,
@@ -74,21 +74,21 @@ int _pj_songEstimateSize(
 ) {
   var bytesCount = offsets.last;
   bytesCount += 3 +
-      Pj_diff_and_scoreSchema.estimateSize(
-          object.easy, allOffsets[pj_diff_and_score]!, allOffsets);
+      Pj_level_and_scoreSchema.estimateSize(
+          object.easy, allOffsets[pj_level_and_score]!, allOffsets);
   bytesCount += 3 +
-      Pj_diff_and_scoreSchema.estimateSize(
-          object.expert, allOffsets[pj_diff_and_score]!, allOffsets);
+      Pj_level_and_scoreSchema.estimateSize(
+          object.expert, allOffsets[pj_level_and_score]!, allOffsets);
   bytesCount += 3 +
-      Pj_diff_and_scoreSchema.estimateSize(
-          object.hard, allOffsets[pj_diff_and_score]!, allOffsets);
+      Pj_level_and_scoreSchema.estimateSize(
+          object.hard, allOffsets[pj_level_and_score]!, allOffsets);
   bytesCount += 3 +
-      Pj_diff_and_scoreSchema.estimateSize(
-          object.master, allOffsets[pj_diff_and_score]!, allOffsets);
+      Pj_level_and_scoreSchema.estimateSize(
+          object.master, allOffsets[pj_level_and_score]!, allOffsets);
   bytesCount += 3 + object.name.length * 3;
   bytesCount += 3 +
-      Pj_diff_and_scoreSchema.estimateSize(
-          object.normal, allOffsets[pj_diff_and_score]!, allOffsets);
+      Pj_level_and_scoreSchema.estimateSize(
+          object.normal, allOffsets[pj_level_and_score]!, allOffsets);
   return bytesCount;
 }
 
@@ -98,35 +98,35 @@ void _pj_songSerialize(
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeObject<pj_diff_and_score>(
+  writer.writeObject<pj_level_and_score>(
     offsets[0],
     allOffsets,
-    Pj_diff_and_scoreSchema.serialize,
+    Pj_level_and_scoreSchema.serialize,
     object.easy,
   );
-  writer.writeObject<pj_diff_and_score>(
+  writer.writeObject<pj_level_and_score>(
     offsets[1],
     allOffsets,
-    Pj_diff_and_scoreSchema.serialize,
+    Pj_level_and_scoreSchema.serialize,
     object.expert,
   );
-  writer.writeObject<pj_diff_and_score>(
+  writer.writeObject<pj_level_and_score>(
     offsets[2],
     allOffsets,
-    Pj_diff_and_scoreSchema.serialize,
+    Pj_level_and_scoreSchema.serialize,
     object.hard,
   );
-  writer.writeObject<pj_diff_and_score>(
+  writer.writeObject<pj_level_and_score>(
     offsets[3],
     allOffsets,
-    Pj_diff_and_scoreSchema.serialize,
+    Pj_level_and_scoreSchema.serialize,
     object.master,
   );
   writer.writeString(offsets[4], object.name);
-  writer.writeObject<pj_diff_and_score>(
+  writer.writeObject<pj_level_and_score>(
     offsets[5],
     allOffsets,
-    Pj_diff_and_scoreSchema.serialize,
+    Pj_level_and_scoreSchema.serialize,
     object.normal,
   );
 }
@@ -138,38 +138,38 @@ pj_song _pj_songDeserialize(
   Map<Type, List<int>> allOffsets,
 ) {
   final object = pj_song();
-  object.easy = reader.readObjectOrNull<pj_diff_and_score>(
+  object.easy = reader.readObjectOrNull<pj_level_and_score>(
         offsets[0],
-        Pj_diff_and_scoreSchema.deserialize,
+        Pj_level_and_scoreSchema.deserialize,
         allOffsets,
       ) ??
-      pj_diff_and_score();
-  object.expert = reader.readObjectOrNull<pj_diff_and_score>(
+      pj_level_and_score();
+  object.expert = reader.readObjectOrNull<pj_level_and_score>(
         offsets[1],
-        Pj_diff_and_scoreSchema.deserialize,
+        Pj_level_and_scoreSchema.deserialize,
         allOffsets,
       ) ??
-      pj_diff_and_score();
-  object.hard = reader.readObjectOrNull<pj_diff_and_score>(
+      pj_level_and_score();
+  object.hard = reader.readObjectOrNull<pj_level_and_score>(
         offsets[2],
-        Pj_diff_and_scoreSchema.deserialize,
+        Pj_level_and_scoreSchema.deserialize,
         allOffsets,
       ) ??
-      pj_diff_and_score();
+      pj_level_and_score();
   object.id = id;
-  object.master = reader.readObjectOrNull<pj_diff_and_score>(
+  object.master = reader.readObjectOrNull<pj_level_and_score>(
         offsets[3],
-        Pj_diff_and_scoreSchema.deserialize,
+        Pj_level_and_scoreSchema.deserialize,
         allOffsets,
       ) ??
-      pj_diff_and_score();
+      pj_level_and_score();
   object.name = reader.readString(offsets[4]);
-  object.normal = reader.readObjectOrNull<pj_diff_and_score>(
+  object.normal = reader.readObjectOrNull<pj_level_and_score>(
         offsets[5],
-        Pj_diff_and_scoreSchema.deserialize,
+        Pj_level_and_scoreSchema.deserialize,
         allOffsets,
       ) ??
-      pj_diff_and_score();
+      pj_level_and_score();
   return object;
 }
 
@@ -181,42 +181,42 @@ P _pj_songDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
-      return (reader.readObjectOrNull<pj_diff_and_score>(
+      return (reader.readObjectOrNull<pj_level_and_score>(
             offset,
-            Pj_diff_and_scoreSchema.deserialize,
+            Pj_level_and_scoreSchema.deserialize,
             allOffsets,
           ) ??
-          pj_diff_and_score()) as P;
+          pj_level_and_score()) as P;
     case 1:
-      return (reader.readObjectOrNull<pj_diff_and_score>(
+      return (reader.readObjectOrNull<pj_level_and_score>(
             offset,
-            Pj_diff_and_scoreSchema.deserialize,
+            Pj_level_and_scoreSchema.deserialize,
             allOffsets,
           ) ??
-          pj_diff_and_score()) as P;
+          pj_level_and_score()) as P;
     case 2:
-      return (reader.readObjectOrNull<pj_diff_and_score>(
+      return (reader.readObjectOrNull<pj_level_and_score>(
             offset,
-            Pj_diff_and_scoreSchema.deserialize,
+            Pj_level_and_scoreSchema.deserialize,
             allOffsets,
           ) ??
-          pj_diff_and_score()) as P;
+          pj_level_and_score()) as P;
     case 3:
-      return (reader.readObjectOrNull<pj_diff_and_score>(
+      return (reader.readObjectOrNull<pj_level_and_score>(
             offset,
-            Pj_diff_and_scoreSchema.deserialize,
+            Pj_level_and_scoreSchema.deserialize,
             allOffsets,
           ) ??
-          pj_diff_and_score()) as P;
+          pj_level_and_score()) as P;
     case 4:
       return (reader.readString(offset)) as P;
     case 5:
-      return (reader.readObjectOrNull<pj_diff_and_score>(
+      return (reader.readObjectOrNull<pj_level_and_score>(
             offset,
-            Pj_diff_and_scoreSchema.deserialize,
+            Pj_level_and_scoreSchema.deserialize,
             allOffsets,
           ) ??
-          pj_diff_and_score()) as P;
+          pj_level_and_score()) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
@@ -497,35 +497,35 @@ extension pj_songQueryFilter
 extension pj_songQueryObject
     on QueryBuilder<pj_song, pj_song, QFilterCondition> {
   QueryBuilder<pj_song, pj_song, QAfterFilterCondition> easy(
-      FilterQuery<pj_diff_and_score> q) {
+      FilterQuery<pj_level_and_score> q) {
     return QueryBuilder.apply(this, (query) {
       return query.object(q, r'easy');
     });
   }
 
   QueryBuilder<pj_song, pj_song, QAfterFilterCondition> expert(
-      FilterQuery<pj_diff_and_score> q) {
+      FilterQuery<pj_level_and_score> q) {
     return QueryBuilder.apply(this, (query) {
       return query.object(q, r'expert');
     });
   }
 
   QueryBuilder<pj_song, pj_song, QAfterFilterCondition> hard(
-      FilterQuery<pj_diff_and_score> q) {
+      FilterQuery<pj_level_and_score> q) {
     return QueryBuilder.apply(this, (query) {
       return query.object(q, r'hard');
     });
   }
 
   QueryBuilder<pj_song, pj_song, QAfterFilterCondition> master(
-      FilterQuery<pj_diff_and_score> q) {
+      FilterQuery<pj_level_and_score> q) {
     return QueryBuilder.apply(this, (query) {
       return query.object(q, r'master');
     });
   }
 
   QueryBuilder<pj_song, pj_song, QAfterFilterCondition> normal(
-      FilterQuery<pj_diff_and_score> q) {
+      FilterQuery<pj_level_and_score> q) {
     return QueryBuilder.apply(this, (query) {
       return query.object(q, r'normal');
     });
@@ -594,25 +594,25 @@ extension pj_songQueryProperty
     });
   }
 
-  QueryBuilder<pj_song, pj_diff_and_score, QQueryOperations> easyProperty() {
+  QueryBuilder<pj_song, pj_level_and_score, QQueryOperations> easyProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'easy');
     });
   }
 
-  QueryBuilder<pj_song, pj_diff_and_score, QQueryOperations> expertProperty() {
+  QueryBuilder<pj_song, pj_level_and_score, QQueryOperations> expertProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'expert');
     });
   }
 
-  QueryBuilder<pj_song, pj_diff_and_score, QQueryOperations> hardProperty() {
+  QueryBuilder<pj_song, pj_level_and_score, QQueryOperations> hardProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'hard');
     });
   }
 
-  QueryBuilder<pj_song, pj_diff_and_score, QQueryOperations> masterProperty() {
+  QueryBuilder<pj_song, pj_level_and_score, QQueryOperations> masterProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'master');
     });
@@ -624,7 +624,7 @@ extension pj_songQueryProperty
     });
   }
 
-  QueryBuilder<pj_song, pj_diff_and_score, QQueryOperations> normalProperty() {
+  QueryBuilder<pj_song, pj_level_and_score, QQueryOperations> normalProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'normal');
     });
@@ -638,9 +638,9 @@ extension pj_songQueryProperty
 // coverage:ignore-file
 // ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters
 
-const Pj_diff_and_scoreSchema = Schema(
-  name: r'pj_diff_and_score',
-  id: 6128155553502342656,
+const Pj_level_and_scoreSchema = Schema(
+  name: r'pj_level_and_score',
+  id: 7927184475921663978,
   properties: {
     r'APed': PropertySchema(
       id: 0,
@@ -677,25 +677,25 @@ const Pj_diff_and_scoreSchema = Schema(
       name: r'bestPerfect',
       type: IsarType.long,
     ),
-    r'diff': PropertySchema(
+    r'highScore': PropertySchema(
       id: 7,
-      name: r'diff',
+      name: r'highScore',
       type: IsarType.long,
     ),
-    r'highScore': PropertySchema(
+    r'level': PropertySchema(
       id: 8,
-      name: r'highScore',
+      name: r'level',
       type: IsarType.long,
     )
   },
-  estimateSize: _pj_diff_and_scoreEstimateSize,
-  serialize: _pj_diff_and_scoreSerialize,
-  deserialize: _pj_diff_and_scoreDeserialize,
-  deserializeProp: _pj_diff_and_scoreDeserializeProp,
+  estimateSize: _pj_level_and_scoreEstimateSize,
+  serialize: _pj_level_and_scoreSerialize,
+  deserialize: _pj_level_and_scoreDeserialize,
+  deserializeProp: _pj_level_and_scoreDeserializeProp,
 );
 
-int _pj_diff_and_scoreEstimateSize(
-  pj_diff_and_score object,
+int _pj_level_and_scoreEstimateSize(
+  pj_level_and_score object,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
@@ -703,8 +703,8 @@ int _pj_diff_and_scoreEstimateSize(
   return bytesCount;
 }
 
-void _pj_diff_and_scoreSerialize(
-  pj_diff_and_score object,
+void _pj_level_and_scoreSerialize(
+  pj_level_and_score object,
   IsarWriter writer,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
@@ -716,17 +716,17 @@ void _pj_diff_and_scoreSerialize(
   writer.writeLong(offsets[4], object.bestGreat);
   writer.writeLong(offsets[5], object.bestMiss);
   writer.writeLong(offsets[6], object.bestPerfect);
-  writer.writeLong(offsets[7], object.diff);
-  writer.writeLong(offsets[8], object.highScore);
+  writer.writeLong(offsets[7], object.highScore);
+  writer.writeLong(offsets[8], object.level);
 }
 
-pj_diff_and_score _pj_diff_and_scoreDeserialize(
+pj_level_and_score _pj_level_and_scoreDeserialize(
   Id id,
   IsarReader reader,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = pj_diff_and_score();
+  final object = pj_level_and_score();
   object.APed = reader.readBoolOrNull(offsets[0]);
   object.FCed = reader.readBoolOrNull(offsets[1]);
   object.bestBad = reader.readLongOrNull(offsets[2]);
@@ -734,12 +734,12 @@ pj_diff_and_score _pj_diff_and_scoreDeserialize(
   object.bestGreat = reader.readLongOrNull(offsets[4]);
   object.bestMiss = reader.readLongOrNull(offsets[5]);
   object.bestPerfect = reader.readLongOrNull(offsets[6]);
-  object.diff = reader.readLong(offsets[7]);
-  object.highScore = reader.readLongOrNull(offsets[8]);
+  object.highScore = reader.readLongOrNull(offsets[7]);
+  object.level = reader.readLong(offsets[8]);
   return object;
 }
 
-P _pj_diff_and_scoreDeserializeProp<P>(
+P _pj_level_and_scoreDeserializeProp<P>(
   IsarReader reader,
   int propertyId,
   int offset,
@@ -761,17 +761,17 @@ P _pj_diff_and_scoreDeserializeProp<P>(
     case 6:
       return (reader.readLongOrNull(offset)) as P;
     case 7:
-      return (reader.readLong(offset)) as P;
-    case 8:
       return (reader.readLongOrNull(offset)) as P;
+    case 8:
+      return (reader.readLong(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
 }
 
-extension pj_diff_and_scoreQueryFilter
-    on QueryBuilder<pj_diff_and_score, pj_diff_and_score, QFilterCondition> {
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+extension pj_level_and_scoreQueryFilter
+    on QueryBuilder<pj_level_and_score, pj_level_and_score, QFilterCondition> {
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       aPedIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -780,7 +780,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       aPedIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -789,7 +789,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       aPedEqualTo(bool? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -799,7 +799,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       fCedIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -808,7 +808,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       fCedIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -817,7 +817,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       fCedEqualTo(bool? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -827,7 +827,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       bestBadIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -836,7 +836,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       bestBadIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -845,7 +845,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       bestBadEqualTo(int? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -855,7 +855,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       bestBadGreaterThan(
     int? value, {
     bool include = false,
@@ -869,7 +869,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       bestBadLessThan(
     int? value, {
     bool include = false,
@@ -883,7 +883,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       bestBadBetween(
     int? lower,
     int? upper, {
@@ -901,7 +901,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       bestGoodIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -910,7 +910,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       bestGoodIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -919,7 +919,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       bestGoodEqualTo(int? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -929,7 +929,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       bestGoodGreaterThan(
     int? value, {
     bool include = false,
@@ -943,7 +943,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       bestGoodLessThan(
     int? value, {
     bool include = false,
@@ -957,7 +957,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       bestGoodBetween(
     int? lower,
     int? upper, {
@@ -975,7 +975,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       bestGreatIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -984,7 +984,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       bestGreatIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -993,7 +993,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       bestGreatEqualTo(int? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -1003,7 +1003,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       bestGreatGreaterThan(
     int? value, {
     bool include = false,
@@ -1017,7 +1017,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       bestGreatLessThan(
     int? value, {
     bool include = false,
@@ -1031,7 +1031,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       bestGreatBetween(
     int? lower,
     int? upper, {
@@ -1049,7 +1049,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       bestMissIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -1058,7 +1058,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       bestMissIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -1067,7 +1067,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       bestMissEqualTo(int? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -1077,7 +1077,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       bestMissGreaterThan(
     int? value, {
     bool include = false,
@@ -1091,7 +1091,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       bestMissLessThan(
     int? value, {
     bool include = false,
@@ -1105,7 +1105,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       bestMissBetween(
     int? lower,
     int? upper, {
@@ -1123,7 +1123,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       bestPerfectIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -1132,7 +1132,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       bestPerfectIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -1141,7 +1141,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       bestPerfectEqualTo(int? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -1151,7 +1151,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       bestPerfectGreaterThan(
     int? value, {
     bool include = false,
@@ -1165,7 +1165,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       bestPerfectLessThan(
     int? value, {
     bool include = false,
@@ -1179,7 +1179,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       bestPerfectBetween(
     int? lower,
     int? upper, {
@@ -1197,63 +1197,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
-      diffEqualTo(int value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'diff',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
-      diffGreaterThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'diff',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
-      diffLessThan(
-    int value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'diff',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
-      diffBetween(
-    int lower,
-    int upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'diff',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-      ));
-    });
-  }
-
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       highScoreIsNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNull(
@@ -1262,7 +1206,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       highScoreIsNotNull() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(const FilterCondition.isNotNull(
@@ -1271,7 +1215,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       highScoreEqualTo(int? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -1281,7 +1225,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       highScoreGreaterThan(
     int? value, {
     bool include = false,
@@ -1295,7 +1239,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       highScoreLessThan(
     int? value, {
     bool include = false,
@@ -1309,7 +1253,7 @@ extension pj_diff_and_scoreQueryFilter
     });
   }
 
-  QueryBuilder<pj_diff_and_score, pj_diff_and_score, QAfterFilterCondition>
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
       highScoreBetween(
     int? lower,
     int? upper, {
@@ -1326,7 +1270,63 @@ extension pj_diff_and_scoreQueryFilter
       ));
     });
   }
+
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
+      levelEqualTo(int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'level',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
+      levelGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'level',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
+      levelLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'level',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<pj_level_and_score, pj_level_and_score, QAfterFilterCondition>
+      levelBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'level',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
 }
 
-extension pj_diff_and_scoreQueryObject
-    on QueryBuilder<pj_diff_and_score, pj_diff_and_score, QFilterCondition> {}
+extension pj_level_and_scoreQueryObject
+    on QueryBuilder<pj_level_and_score, pj_level_and_score, QFilterCondition> {}

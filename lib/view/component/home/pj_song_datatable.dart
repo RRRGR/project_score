@@ -11,7 +11,7 @@ class SongDataTable extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final levelSetting = ref.watch(levelProvider);
+    final diffSetting = ref.watch(diffProvider);
     double width = MediaQuery.of(context).size.width;
     return DataTable(
       columnSpacing: 8,
@@ -33,7 +33,7 @@ class SongDataTable extends ConsumerWidget {
                       e.name,
                     ),
                   )),
-                  DataCell(Text(levelSetting)),
+                  DataCell(Text(diffSetting)),
                   DataCell(DiffText(e)),
                   DataCell(ScoreText(e)),
                 ],
@@ -49,17 +49,17 @@ class DiffText extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final diff = ref.watch(levelProvider);
+    final diff = ref.watch(diffProvider);
     if (diff == "Master") {
-      return Text(e.master.diff.toString());
+      return Text(e.master.level.toString());
     } else if (diff == "Expert") {
-      return Text(e.expert.diff.toString());
+      return Text(e.expert.level.toString());
     } else if (diff == "Hard") {
-      return Text(e.hard.diff.toString());
+      return Text(e.hard.level.toString());
     } else if (diff == "Normal") {
-      return Text(e.normal.diff.toString());
+      return Text(e.normal.level.toString());
     } else {
-      return Text(e.easy.diff.toString());
+      return Text(e.easy.level.toString());
     }
   }
 }
@@ -70,7 +70,7 @@ class ScoreText extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final diff = ref.watch(levelProvider);
+    final diff = ref.watch(diffProvider);
     if (diff == "Master") {
       if (e.master.bestPerfect == null) {
         return const Text("-");
@@ -112,7 +112,7 @@ class ScoreText extends ConsumerWidget {
 
 MaterialStateProperty<MaterialColor> getRowBackgroundColor(
     pj_song e, WidgetRef ref) {
-  final diff = ref.watch(levelProvider);
+  final diff = ref.watch(diffProvider);
   bool APed = false;
   bool FCed = false;
   if (diff == "Master") {
