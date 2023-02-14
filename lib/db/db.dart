@@ -14,18 +14,18 @@ class IsarService {
     final isar = await db;
     List songsList = await loadLocalJson();
     String songName = "";
-    int eDiff = 0;
-    int nDiff = 0;
-    int hDiff = 0;
-    int exDiff = 0;
-    int mDiff = 0;
+    int easyLevel = 0;
+    int normalLevel = 0;
+    int hardLevel = 0;
+    int expertLevel = 0;
+    int masterLevel = 0;
     for (Map songData in songsList) {
       songName = songData["name"];
-      eDiff = songData["easy_level"];
-      nDiff = songData["normal_level"];
-      hDiff = songData["hard_level"];
-      exDiff = songData["expert_level"];
-      mDiff = songData["master_level"];
+      easyLevel = songData["easy_level"];
+      normalLevel = songData["normal_level"];
+      hardLevel = songData["hard_level"];
+      expertLevel = songData["expert_level"];
+      masterLevel = songData["master_level"];
       List result =
           await isar.pj_songs.filter().nameContains(songName).findAll();
       // final easyInfo = pj_diff_and_score()..diff = eDiff;
@@ -35,11 +35,11 @@ class IsarService {
       // final masterInfo = pj_diff_and_score()..diff = mDiff;
       pj_song songInfo;
       if (result.isEmpty) {
-        final easyInfo = pj_diff_and_score()..diff = eDiff;
-        final normalInfo = pj_diff_and_score()..diff = nDiff;
-        final hardInfo = pj_diff_and_score()..diff = hDiff;
-        final expertInfo = pj_diff_and_score()..diff = exDiff;
-        final masterInfo = pj_diff_and_score()..diff = mDiff;
+        final easyInfo = pj_level_and_score()..level = easyLevel;
+        final normalInfo = pj_level_and_score()..level = normalLevel;
+        final hardInfo = pj_level_and_score()..level = hardLevel;
+        final expertInfo = pj_level_and_score()..level = expertLevel;
+        final masterInfo = pj_level_and_score()..level = masterLevel;
         songInfo = pj_song()
           ..name = songName
           ..easy = easyInfo
@@ -49,11 +49,11 @@ class IsarService {
           ..master = masterInfo;
       } else {
         pj_song state = result[0];
-        state.easy.diff = eDiff;
-        state.normal.diff = nDiff;
-        state.hard.diff = hDiff;
-        state.expert.diff = exDiff;
-        state.master.diff = mDiff;
+        state.easy.level = easyLevel;
+        state.normal.level = normalLevel;
+        state.hard.level = hardLevel;
+        state.expert.level = expertLevel;
+        state.master.level = masterLevel;
         songInfo = pj_song()
           ..id = state.id
           ..name = songName
@@ -96,8 +96,8 @@ class IsarService {
         scoreData["bad"] == 0 &&
         scoreData["miss"] == 0) FCed = true;
     if (scoreData['diff'] == 'MASTER') {
-      final masterInfo = pj_diff_and_score()
-        ..diff = old_pj_songs.master.diff
+      final masterInfo = pj_level_and_score()
+        ..level = old_pj_songs.master.level
         ..APed = APed
         ..FCed = FCed
         ..bestPerfect = scoreData["perfect"]
@@ -114,8 +114,8 @@ class IsarService {
         ..expert = old_pj_songs.expert
         ..master = masterInfo;
     } else if (scoreData['diff'] == 'EXPERT') {
-      final expertInfo = pj_diff_and_score()
-        ..diff = old_pj_songs.expert.diff
+      final expertInfo = pj_level_and_score()
+        ..level = old_pj_songs.expert.level
         ..APed = APed
         ..FCed = FCed
         ..bestPerfect = scoreData["perfect"]
@@ -132,8 +132,8 @@ class IsarService {
         ..expert = expertInfo
         ..master = old_pj_songs.master;
     } else if (scoreData['diff'] == 'HARD') {
-      final hardInfo = pj_diff_and_score()
-        ..diff = old_pj_songs.hard.diff
+      final hardInfo = pj_level_and_score()
+        ..level = old_pj_songs.hard.level
         ..APed = APed
         ..FCed = FCed
         ..bestPerfect = scoreData["perfect"]
@@ -150,8 +150,8 @@ class IsarService {
         ..expert = old_pj_songs.expert
         ..master = old_pj_songs.master;
     } else if (scoreData['diff'] == 'NORMAL') {
-      final normalInfo = pj_diff_and_score()
-        ..diff = old_pj_songs.normal.diff
+      final normalInfo = pj_level_and_score()
+        ..level = old_pj_songs.normal.level
         ..APed = APed
         ..FCed = FCed
         ..bestPerfect = scoreData["perfect"]
@@ -168,8 +168,8 @@ class IsarService {
         ..expert = old_pj_songs.expert
         ..master = old_pj_songs.master;
     } else {
-      final easyInfo = pj_diff_and_score()
-        ..diff = old_pj_songs.easy.diff
+      final easyInfo = pj_level_and_score()
+        ..level = old_pj_songs.easy.level
         ..APed = APed
         ..FCed = FCed
         ..bestPerfect = scoreData["perfect"]
@@ -221,8 +221,8 @@ class IsarService {
         scoreMap["bad"] == 0 &&
         scoreMap["miss"] == 0) FCed = true;
     if (scoreMap['diff'] == 'Master') {
-      final masterInfo = pj_diff_and_score()
-        ..diff = old_pj_songs.master.diff
+      final masterInfo = pj_level_and_score()
+        ..level = old_pj_songs.master.level
         ..APed = APed
         ..FCed = FCed
         ..bestPerfect = scoreMap["perfect"]
@@ -239,8 +239,8 @@ class IsarService {
         ..expert = old_pj_songs.expert
         ..master = masterInfo;
     } else if (scoreMap['diff'] == 'Expert') {
-      final expertInfo = pj_diff_and_score()
-        ..diff = old_pj_songs.expert.diff
+      final expertInfo = pj_level_and_score()
+        ..level = old_pj_songs.expert.level
         ..APed = APed
         ..FCed = FCed
         ..bestPerfect = scoreMap["perfect"]
@@ -257,8 +257,8 @@ class IsarService {
         ..expert = expertInfo
         ..master = old_pj_songs.master;
     } else if (scoreMap['diff'] == 'Hard') {
-      final hardInfo = pj_diff_and_score()
-        ..diff = old_pj_songs.hard.diff
+      final hardInfo = pj_level_and_score()
+        ..level = old_pj_songs.hard.level
         ..APed = APed
         ..FCed = FCed
         ..bestPerfect = scoreMap["perfect"]
@@ -275,8 +275,8 @@ class IsarService {
         ..expert = old_pj_songs.expert
         ..master = old_pj_songs.master;
     } else if (scoreMap['diff'] == 'Normal') {
-      final normalInfo = pj_diff_and_score()
-        ..diff = old_pj_songs.normal.diff
+      final normalInfo = pj_level_and_score()
+        ..level = old_pj_songs.normal.level
         ..APed = APed
         ..FCed = FCed
         ..bestPerfect = scoreMap["perfect"]
@@ -293,8 +293,8 @@ class IsarService {
         ..expert = old_pj_songs.expert
         ..master = old_pj_songs.master;
     } else {
-      final easyInfo = pj_diff_and_score()
-        ..diff = old_pj_songs.easy.diff
+      final easyInfo = pj_level_and_score()
+        ..level = old_pj_songs.easy.level
         ..APed = APed
         ..FCed = FCed
         ..bestPerfect = scoreMap["perfect"]
@@ -331,7 +331,7 @@ class IsarService {
       for (int i = 40; i > 1; i--) {
         List<pj_song> newList = isar.pj_songs
             .filter()
-            .master((q) => q.diffEqualTo(i))
+            .master((q) => q.levelEqualTo(i))
             .findAllSync();
         result = [...result, ...newList];
       }

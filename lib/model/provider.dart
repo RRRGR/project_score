@@ -17,7 +17,7 @@ class SPClass {
 }
 
 final sortProvider = StateProvider<String>((ref) => 'デフォルト');
-final levelProvider = StateProvider<String>((ref) => 'Master');
+final diffProvider = StateProvider<String>((ref) => 'Master');
 
 final streamSongDataProvider = StreamProvider((ref) async* {
   yield await IsarService().getPjScores(ref.read(sortProvider));

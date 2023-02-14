@@ -29,9 +29,9 @@ class DiffButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final levelSetting = ref.watch(levelProvider);
+    final diffSetting = ref.watch(diffProvider);
     return DropdownButton(
-      value: levelSetting,
+      value: diffSetting,
       items: ['Easy', 'Normal', 'Hard', 'Expert', 'Master'].map((String value) {
         return DropdownMenuItem<String>(
           value: value,
@@ -39,7 +39,7 @@ class DiffButton extends ConsumerWidget {
         );
       }).toList(),
       onChanged: (value) {
-        ref.read(levelProvider.notifier).state = value!;
+        ref.read(diffProvider.notifier).state = value!;
         ref.refresh(streamSongDataProvider);
       },
     );
