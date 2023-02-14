@@ -21,11 +21,11 @@ class IsarService {
     int mDiff = 0;
     for (Map songData in songsList) {
       songName = songData["name"];
-      eDiff = songData["e_diff"];
-      nDiff = songData["n_diff"];
-      hDiff = songData["h_diff"];
-      exDiff = songData["ex_diff"];
-      mDiff = songData["m_diff"];
+      eDiff = songData["easy_level"];
+      nDiff = songData["normal_level"];
+      hDiff = songData["hard_level"];
+      exDiff = songData["expert_level"];
+      mDiff = songData["master_level"];
       List result =
           await isar.pj_songs.filter().nameContains(songName).findAll();
       // final easyInfo = pj_diff_and_score()..diff = eDiff;
